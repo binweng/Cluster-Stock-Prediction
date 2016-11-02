@@ -156,5 +156,8 @@ data.three <- as.data.frame(data.three)
 data.final <- data.three[complete.cases(data.three),]
 data.final$Target <- as.factor(data.final$Target)
 
+drops <- c("Date")
+data.final <- data.final[,!(names(data.final) %in% drops)]
+
 #Export the data to CSV*********************************************************
 #write.csv(data.final, file = "Paper3_data.csv")
