@@ -53,7 +53,7 @@ price.sma.10 <- SMA(data.three$Close,10)
 price.wma.10 <- WMA(data.three$Close,10)
 price.cmo.10 <- CMO(data.three$Close,10)
 price.rsi <- RSI(data.three$Close)
-price.macd <- MACD(data.three$Close)
+price.macd <- MACD(data.three$Close)[,1]
 
 price.osc <- data.frame(stoch(data.three[,c("High","Low","Close")]))
 price.k <- price.osc$fastK
@@ -75,7 +75,7 @@ wiki.sma.10 <- SMA(data.three$Wiki,10)
 wiki.wma.10 <- WMA(data.three$Wiki,10)
 wiki.cmo.10 <- CMO(data.three$Wiki,10)
 wiki.rsi <- RSI(data.three$Wiki)
-wiki.macd <- MACD(data.three$Wiki)
+wiki.macd <- MACD(data.three$Wiki)[,1]
 
 data.three$wikiSMA <- wiki.sma.10
 data.three$wikiWMA <- wiki.wma.10
@@ -88,7 +88,7 @@ sentiment.sma.10 <- SMA(data.three$Sentiment ,10)
 sentiment.wma.10 <- WMA(data.three$Sentiment,10)
 sentiment.cmo.10 <- CMO(data.three$Sentiment,10)
 sentiment.rsi <- RSI(data.three$Sentiment)
-sentiment.macd <- MACD(data.three$Sentiment)
+sentiment.macd <- MACD(data.three$Sentiment)[,1]
 
 sentiment.osc <- data.frame(stoch(data.three[,c("Sentiment High",
                                                 "Sentiment Low","Sentiment")]))
@@ -112,7 +112,7 @@ news.sma.10 <- SMA(data.three$`News Volume`,10)
 news.wma.10 <- WMA(data.three$`News Volume`,10)
 news.cmo.10 <- CMO(data.three$`News Volume`,10)
 news.rsi <- RSI(data.three$`News Volume`)
-news.macd <- MACD(data.three$`News Volume`)
+news.macd <- MACD(data.three$`News Volume`)[,1]
 
 data.three$newsSMA <- news.sma.10
 data.three$newsWMA <- news.wma.10
