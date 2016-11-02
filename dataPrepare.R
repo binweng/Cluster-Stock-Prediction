@@ -120,8 +120,41 @@ data.three$newsMomentum <- news.cmo.10
 data.three$newsRSI <- news.rsi
 data.three$newsMACD <- news.macd
 
+#Create the target**************************************************************
+period <- 1  #looking for one day ahead
+
+
+close.diff <- diff(data.three$Close,lag = period)
+rate.change <- close.diff/data.three$Close[-nrow(data.three)]*100
+
+tClass.checker <- function(change){
+     if(change <= -2){
+          1
+     }else if (change > -2 & change <= -1){
+          2
+     }else if (change > -1 & change <= 0){
+          3
+     }else if (change > 0 & change <= 1){
+          4
+     }else if (change > 1 & change <= 2){
+          5
+     }else{
+          6
+     }
+}
+
+target.class <- lapply(rate.change, tClass.checker)
+
+target<- rep(NA, nrow(data.three))
+target[1:length(target.class)] <- target.class
+target <- as.numeric(unlist(target))
+
+data.three$Target <- target
+data.three <- as.data.frame(data.three)
+
 #Finalize the data prepare******************************************************
 data.final <- data.three[complete.cases(data.three),]
+data.final$Target <- as.factor(data.final$Target)
 
 #Export the data to CSV*********************************************************
 #write.csv(data.final, file = "Paper3_data.csv")
